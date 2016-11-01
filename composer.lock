@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0325fda478cb12e97b058288fde95324",
-    "content-hash": "b4fa39dcb704a24dd7f89598e5834247",
+    "hash": "beb9222086a942e5cf690d403c4bf600",
+    "content-hash": "d822e4733e6db2905709d2425802d6a3",
     "packages": [
         {
             "name": "rmccue/requests",
@@ -63,6 +63,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.2"
+    },
     "platform-dev": []
 }
