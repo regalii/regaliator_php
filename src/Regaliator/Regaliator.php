@@ -1,6 +1,8 @@
 <?php
 namespace Regalii;
 
+require_once 'Request.php';
+
 class Regaliator {
 
   public $request;
@@ -69,5 +71,5 @@ class Regaliator {
   public function transactions($params = []) {
     return $this->request->get("/transactions", $params);
   }
-  
+
 }
