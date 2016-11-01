@@ -1,0 +1,14 @@
+{
+    "name": "regalii/regaliator",
+    "description": "PHP client library for connecting to the Regalii API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Leigh Halliday",
+            "email": "leighhalliday@gmail.com"
+        }
+    ],
+    "require": {
+        "rmccue/requests": "^1.7"
+    }
+}
