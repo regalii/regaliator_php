@@ -1,8 +1,6 @@
 <?php
 namespace Regalii;
 
-require_once 'Request.php';
-
 class Regaliator {
 
   public $request;

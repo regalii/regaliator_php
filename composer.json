@@ -1,21 +1,22 @@
 {
-    "name": "regalii/regaliator",
-    "description": "PHP client library for connecting to the Regalii API",
-    "type": "library",
-    "version": "0.1.0",
-    "authors": [
-        {
-            "name": "Leigh Halliday",
-            "email": "leighhalliday@gmail.com"
-        }
-    ],
-    "require": {
-        "rmccue/requests": "^1.7",
-        "php": ">=5.2"
-    },
-    "autoload": {
-  	   "psr-4": {
-         "Regalii\\": "src/"
-       }
-  	}
+  "name": "regalii/regaliator",
+  "description": "PHP client library for connecting to the Regalii API",
+  "type": "library",
+  "version": "0.2.0",
+  "authors": [
+    {
+      "name": "Leigh Halliday",
+      "email": "leighhalliday@gmail.com"
+    }
+  ],
+  "require": {
+    "rmccue/requests": "^1.7",
+    "php": ">=5.2"
+  },
+  "autoload": {
+    "classmap": [
+      "src/Regaliator/Request.php",
+      "src/Regaliator/Regaliator.php"
+    ]
+  }
 }
