@@ -2,7 +2,7 @@
 namespace Regalii;
 
 class Request {
-  
+
   const CONTENT_TYPE = 'application/json';
   const ACCEPT = 'application/vnd.regalii.v3.0+json';
 
@@ -32,8 +32,13 @@ class Request {
 
   public function get($endpoint, $params = []) {
     $content_md5 = "";
-    $headers = $this->headers($endpoint, $content_md5);
-    return \Requests::request("{$this->api_host}{$endpoint}", $headers, $params);
+    if ($params) {
+      $query = "?".http_build_query($params);
+    } else {
+      $query = "";
+    }
+    $headers = $this->headers("{$endpoint}{$query}", $content_md5);
+    return \Requests::get("{$this->api_host}{$endpoint}{$query}", $headers);
   }
 
   private function now() {
