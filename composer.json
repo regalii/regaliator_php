@@ -2,7 +2,7 @@
   "name": "regalii/regaliator",
   "description": "PHP client library for connecting to the Regalii API",
   "type": "library",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "authors": [
     {
       "name": "Leigh Halliday",
@@ -14,9 +14,6 @@
     "php": ">=5.2"
   },
   "autoload": {
-    "classmap": [
-      "src/Regaliator/Request.php",
-      "src/Regaliator/Regaliator.php"
-    ]
+    "psr-0": { "Regaliator": "src/" }
   }
 }
