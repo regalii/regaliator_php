@@ -1,5 +1,5 @@
 <?php
-namespace Regalii;
+namespace Regaliator;
 
 class Request {
 
