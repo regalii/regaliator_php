@@ -7,7 +7,7 @@ A PHP client for connecting to the Regalii API.
 After requiring `regalii/regaliator` in your `composer.json` file, you can use the class like so:
 
 ```php
-$regaliator = new Regalii\Regaliator(
+$regaliator = new Regaliator\Regaliator(
   'https://test.casiregalii.com',
   getenv('REGALII_API_KEY'),
   getenv('REGALII_SECRET')
