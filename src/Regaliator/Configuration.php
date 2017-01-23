@@ -5,7 +5,7 @@ class Configuration {
   const DEFAULT_OPTIONS = [
     'version'    => '3.1',
     'timeout'    => 60,
-    'api_host'   => 'https://api.casiregalii.com',
+    'api_host'   => 'api.casiregalii.com',
     'api_key'    => 'your-api-key',
     'secret_key' => 'your-secret-key'
   ];

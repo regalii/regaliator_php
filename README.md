@@ -9,7 +9,7 @@ After requiring `regalii/regaliator` in your `composer.json` file, you can use t
 ```php
 $configuration = new Regaliator\Configuration([
   'version' => '3.1',
-  'api_host' => 'https://test.casiregalii.com',
+  'api_host' => 'api.casiregalii.com',
   'api_key' => getenv('REGALII_API_KEY'),
   'secret_key' => getenv('REGALII_SECRET')
 ]);

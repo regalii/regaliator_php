@@ -14,14 +14,14 @@ class Request {
     $content_json = json_encode($content);
     $content_md5 = base64_encode(md5($content_json, true));
     $headers = $this->headers($endpoint, $content_md5);
-    return \Requests::post("{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
+    return \Requests::post("https://{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
   }
 
   public function patch($endpoint, $content) {
     $content_json = json_encode($content);
     $content_md5 = base64_encode(md5($content_json, true));
     $headers = $this->headers($endpoint, $content_md5);
-    return \Requests::patch("{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
+    return \Requests::patch("https://{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
   }
 
   public function get($endpoint, $params = []) {
@@ -32,7 +32,7 @@ class Request {
       $query = "";
     }
     $headers = $this->headers("{$endpoint}{$query}", $content_md5);
-    return \Requests::get("{$this->configuration->api_host}{$endpoint}{$query}", $headers, $this->configuration->options);
+    return \Requests::get("https://{$this->configuration->api_host}{$endpoint}{$query}", $headers, $this->configuration->options);
   }
 
   private function now() {
