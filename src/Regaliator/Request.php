@@ -2,32 +2,26 @@
 namespace Regaliator;
 
 class Request {
-
   const CONTENT_TYPE = 'application/json';
-  const ACCEPT = 'application/vnd.regalii.v3.0+json';
 
-  public $api_host;
-  public $api_key;
-  public $secret;
+  public $configuration;
 
-  public function __construct($api_host, $api_key, $secret) {
-    $this->api_host = $api_host;
-    $this->api_key = $api_key;
-    $this->secret = $secret;
+  public function __construct($configuration) {
+    $this->configuration = $configuration;
   }
 
-  public function post($endpoint, $content) {
+  public function post($endpoint, $content = []) {
     $content_json = json_encode($content);
     $content_md5 = base64_encode(md5($content_json, true));
     $headers = $this->headers($endpoint, $content_md5);
-    return \Requests::post("{$this->api_host}{$endpoint}", $headers, $content_json);
+    return \Requests::post("{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
   }
 
   public function patch($endpoint, $content) {
     $content_json = json_encode($content);
     $content_md5 = base64_encode(md5($content_json, true));
     $headers = $this->headers($endpoint, $content_md5);
-    return \Requests::patch("{$this->api_host}{$endpoint}", $headers, $content_json);
+    return \Requests::patch("{$this->configuration->api_host}{$endpoint}", $headers, $content_json, $this->configuration->options);
   }
 
   public function get($endpoint, $params = []) {
@@ -38,7 +32,7 @@ class Request {
       $query = "";
     }
     $headers = $this->headers("{$endpoint}{$query}", $content_md5);
-    return \Requests::get("{$this->api_host}{$endpoint}{$query}", $headers);
+    return \Requests::get("{$this->configuration->api_host}{$endpoint}{$query}", $headers, $this->configuration->options);
   }
 
   private function now() {
@@ -51,17 +45,17 @@ class Request {
 
     return array(
       'Content-Type' => self::CONTENT_TYPE,
-      'Accept' => self::ACCEPT,
+      'Accept' => $this->configuration->accept(),
       'Date' => $date,
       'Content-MD5' => $content_md5,
-      'Authorization' => "APIAuth {$this->api_key}:{$this->auth_hash($endpoint, $content_md5, $date)}"
+      'Authorization' => "APIAuth {$this->configuration->api_key}:{$this->auth_hash($endpoint, $content_md5, $date)}"
     );
   }
 
   private function auth_hash($endpoint, $content_md5, $date) {
     $data_pieces = array(self::CONTENT_TYPE, $content_md5, $endpoint, $date);
     $data = implode(',', $data_pieces);
-    $raw_hmac = hash_hmac("sha1", $data, $this->secret, true);
+    $raw_hmac = hash_hmac("sha1", $data, $this->configuration->secret_key, true);
     return base64_encode($raw_hmac);
   }
 

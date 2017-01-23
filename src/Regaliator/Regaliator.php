@@ -2,11 +2,10 @@
 namespace Regaliator;
 
 class Regaliator {
-
   public $request;
 
-  public function __construct($api_host, $api_key, $secret) {
-    $this->request = new Request($api_host, $api_key, $secret);
+  public function __construct($configuration) {
+    $this->request = new Request($configuration);
   }
 
   public function account() {
@@ -42,8 +41,8 @@ class Regaliator {
     return $this->request->get("/bills/{$bill_id}");
   }
 
-  public function show_bill_xdata($bill_id) {
-    return $this->request->get("/bills/{$bill_id}/xdata");
+  public function refresh_bill($bill_id) {
+    return $this->request->post("/bills/{$bill_id}/refresh");
   }
 
   public function xpay_bill($bill_id, $content) {
