@@ -7,16 +7,20 @@ A PHP client for connecting to the Regalii API.
 After requiring `regalii/regaliator` in your `composer.json` file, you can use the class like so:
 
 ```php
-$regaliator = new Regaliator\Regaliator(
-  'https://test.casiregalii.com',
-  getenv('REGALII_API_KEY'),
-  getenv('REGALII_SECRET')
-);
+$configuration = new Regaliator\Configuration([
+  'version' => '3.1',
+  'api_host' => 'api.casiregalii.com',
+  'api_key' => getenv('REGALII_API_KEY'),
+  'secret_key' => getenv('REGALII_SECRET')
+]);
+$regaliator = new Regaliator\Regaliator($configuration);
 
 $response = $regaliator->account();
 
 if ($response->success) {
   $data = json_decode($response->body, true);
+} else {
+  echo "Failed with status code {$response->status_code}";
 }
 ```
 
@@ -34,7 +38,7 @@ $bill = json_decode($response->body, true);
 echo "Created bill {$bill['id']}\n";
 ```
 
-### Polling for while bill updating
+### Polling for while bill fetching
 
 ```php
 function poll_while_updating($regaliator, $id) {
@@ -45,11 +49,11 @@ function poll_while_updating($regaliator, $id) {
     $response = $regaliator->show_bill($id);
     $bill = json_decode($response->body, true);
 
-    if ($bill['status'] !== 'updating') {
+    if ($bill['status'] !== 'fetching') {
       return $bill;
     }
   }
-  // raise exception because bill is still updating
+  // raise exception because bill is still fetching
 }
 
 $bill = poll_while_updating($regaliator, $bill['id']);
