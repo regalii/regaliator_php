@@ -2,12 +2,15 @@
 namespace Regaliator;
 
 class Configuration {
+  const CLIENT_VERSION = '1.0.1';
+
   const DEFAULT_OPTIONS = [
     'version'    => '3.1',
     'timeout'    => 60,
     'api_host'   => 'api.casiregalii.com',
     'api_key'    => 'your-api-key',
-    'secret_key' => 'your-secret-key'
+    'secret_key' => 'your-secret-key',
+    'useragent'  => 'Regaliator PHP v'.self::CLIENT_VERSION
   ];
 
   public $options = [];
